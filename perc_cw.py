@@ -182,7 +182,7 @@ class PerC_CW:
             adv_not_found = ~adv_found
             lower_bound[adv_not_found] = torch.max(lower_bound[adv_not_found], CONST[adv_not_found])
             is_smaller = upper_bound < 1e9
-            CONST[is_smaller] = (lower_bound[is_smaller] + upper_bound[is_smaller]) / 2
+            CONST[is_smaller] = ((lower_bound[is_smaller] + upper_bound[is_smaller]) / 2).long()
             CONST[(~is_smaller) * adv_not_found] *= 10
 
         # return the best solution found
